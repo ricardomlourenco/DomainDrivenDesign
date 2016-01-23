@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01 - Presentation", "01 - Presentation", "{A6F47886-6A7D-4C95-BDC0-FCAB6C8BAB2B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02 - Services", "02 - Services", "{88D47CF9-450F-4D17-B75D-E63119C78E13}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03 - Application", "03 - Application", "{481C7FDA-FCB7-4AE9-BFEE-9A3DD14784FA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04 - Domain", "04 - Domain", "{66327C1E-A3DF-4A69-8D9C-6C58547B37EF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "05 - Infrastructure", "05 - Infrastructure", "{FAAC2421-ACDA-408B-8FBF-202AF9F40F90}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{A577736D-3429-42CA-BB70-17B16A557395}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CrossCutting", "CrossCutting", "{4A9148B4-3812-4A5E-9E38-DC9DA41BACF3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainDrivenDesign.Domain", "src\DomainDrivenDesign.Domain\DomainDrivenDesign.Domain.csproj", "{1F4E0405-4FD6-4D23-BF58-E86EFE878F0D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1F4E0405-4FD6-4D23-BF58-E86EFE878F0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F4E0405-4FD6-4D23-BF58-E86EFE878F0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F4E0405-4FD6-4D23-BF58-E86EFE878F0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F4E0405-4FD6-4D23-BF58-E86EFE878F0D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1F4E0405-4FD6-4D23-BF58-E86EFE878F0D} = {66327C1E-A3DF-4A69-8D9C-6C58547B37EF}
+		{A577736D-3429-42CA-BB70-17B16A557395} = {FAAC2421-ACDA-408B-8FBF-202AF9F40F90}
+		{4A9148B4-3812-4A5E-9E38-DC9DA41BACF3} = {FAAC2421-ACDA-408B-8FBF-202AF9F40F90}
+	EndGlobalSection
+EndGlobal
