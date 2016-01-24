@@ -38,7 +38,8 @@ namespace DomainDrivenDesign.Infra.Data.Repository
         /// <returns></returns>
         public override IEnumerable<Security> GetAll()
         {
-            return securities.Take(10);
+            //return securities.Take(10);
+            return base.GetAll();
         }
 
         public string GetISINbySedol(string sedol)

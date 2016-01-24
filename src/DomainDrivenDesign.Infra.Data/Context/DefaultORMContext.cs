@@ -4,9 +4,10 @@ using DomainDrivenDesign.Domain.Entities;
 
 namespace DomainDrivenDesign.Infra.Data.Context
 {
+    [DbConfigurationType(typeof(DatabaseConfiguration))] 
     public class DefaultORMContext : DbContext
     {
-        public DefaultORMContext(): base("DefaultConnection")
+        public DefaultORMContext(): base("DDDTemplate")
         {
 
         }
