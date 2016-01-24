@@ -1,0 +1,87 @@
+﻿@model DomainDrivenDesign.Application.ViewModels.SecuritySearch
+
+@{
+    ViewBag.Title = "Security Lookup";
+    AjaxOptions ajaxOptions = new AjaxOptions()
+    {
+        UpdateTargetId = "SecuritySearchGrid",
+        Url = Url.Action("SearchResultPartial"),
+        LoadingElementId = "Loading",
+        LoadingElementDuration = 1000,
+        OnFailure = "onFailure"
+        
+    };
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Ajax.BeginForm(ajaxOptions))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <div class="form-group">
+            <label for="NameToSearch" class="col-sm-2 control-label">@Html.DisplayNameFor(model => model.NameToSearch)</label>
+            <div class="col-sm-10">
+                @Html.TextBoxFor(model => model.NameToSearch, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="TextToSearch" class="col-sm-2 control-label">@Html.DisplayNameFor(model => model.TextToSearch)</label>
+            <div class="col-sm-10">
+                @Html.TextBoxFor(model => model.TextToSearch, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" name="Search" id="Search" class="btn btn-primary">Search</button>
+                <button type="button" name="ClearButton" id="ClearButton" class="btn btn-warning hidden-xs hidden-sm">Clear</button>
+            </div>
+        </div> 
+    </div>
+}
+
+    <div id="Loading" class="text-info" style="display:none">Loading, please wait...</div>
+    <div id="ErrorMessage" class="bg-danger hidden">Error on searching...</div>
+
+    <div id="SecuritySearchGrid" class="container">
+        @Html.Partial("SearchResultPartial", Model.Securities)
+    </div>
+
+@section scripts
+{
+    <script type="text/javascript">
+        $(function () {
+            $("#ClearButton").click(function() {
+                $("#form0").trigger('reset');
+            });
+
+            $("#form0").validate({
+                rules: {
+                    NameToSearch: {
+                        require_from_group: [1, ".form-control"]
+                    },
+                    TextToSearch: {
+                        require_from_group: [1, ".form-control"]
+                    }
+                }
+            });
+        });
+
+        function onBegin() {
+            $("#NoRecordsFound").hide();
+            $("#ErrorMessage").hide();
+        };
+
+        function onFailure() {
+            //TODO: Implement a message when the ajax fails
+            $("#ErrorMessage").show();
+        };
+
+    </script>
+}
+        
+
+
+

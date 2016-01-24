@@ -1,0 +1,10 @@
+﻿@model IEnumerable<DomainDrivenDesign.Application.ViewModels.SecurityViewModel>
+
+@if (Model != null && Model.Count() > 0)
+{
+    @Html.Partial("SearchResultGridPartial")
+}
+else
+{
+    <div id="NoRecordsFound" class="bg-warning"><p>No records found</p></div>
+}

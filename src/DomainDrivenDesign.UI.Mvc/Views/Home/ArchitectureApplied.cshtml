@@ -1,0 +1,125 @@
+﻿<div class="jumbotron">
+    <h1>Software Architecture Applied</h1>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-*">
+            <h2>Robust and ready to grow</h2>
+            <p>
+                I used a combination of Frameworks and Patterns such as DDD, Ioc, TDD to create this solution.
+                The result is a robutst, testable, scalable and ready to change and grow Solution that as a Team is much easier
+                to work with since each layer has specific responsibilities and we can isolate the layers for Unit Tests and focus on the task we are doing instead of spend time to reproduce the environment.
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-*">
+            <h2>DDD - Domain Driven</h2>
+            <p>
+                The Domain represents the Company Business. It contains all
+                Entities, Specifications, Validations and all that is necessary for the business works.
+                The Domain is agnostic to technogies and can't make a reference in any Layer, except the CrossCutting tier.
+                This way we can share the Domain between any clients or UI or Services.
+                If we force the Domain to make a reference on System.Web we bring unecessaries
+                things for this layer are useless when we need to implement a desktop app for example.
+
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-*">
+            <p><img class="img-responsive" src="/Images/DDD_NLAYER_ARCHITECTURE_SMALL.png" alt="DDD Diagram"></p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-*">
+            <h2>Project Layers</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-*">
+            <h2>1.Presentation</h2>
+            <p>
+                It's the UI layer where we can have Asp.Net MVC, WPF, Mobile, etc.
+                It's responsible only for display data with rich and robust layout.
+                They must make a reference to the Application Layer and never access direclty the Domain.
+
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Basic flow MVC UI (Pipeline)</div>
+                    <div class="panel-body">
+                        <ul>
+                            <li>The User Request a URL</li>
+                            <li>MVC Pipeline workflow starts with Router.</li>
+                            <li>Then extract the Route from URL</li>
+                            <li>Then it matches the extracted route with Mapped routes</li>
+                            <li>MVC starts the Controller Initialization with Controller Factory based on the Route</li>
+                            <li>The Action Execution Starts where the Model must be created and returned</li>
+                            <li>The Result Execution Starts and MVC analyzes the ActionResult</li>
+                            <li>If the Result is a View Result MVC starts the View Engine process (Razor or Aspx until MVC 4, Razor only after MVC 5)</li>
+                            <li>If the Resul is NOT a View, MVC just return the Result(It can be a Json result, File, RedirectResult, etc)</li>
+                            <li>The execution returns to IIS that returns the final Http to the Client/Browser/User</li>
+                        </ul>
+                    </div>
+                </div>
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-*">
+            <h2>2.Services</h2>
+            <p>
+                Responsible for expose Services and APIs from our Application Layer.
+                We can have here WebApi, WCF, etc.
+                They must make a reference to the Application Layer and never access direclty the Domain.
+                The WebApi is not finished but I included just to show how easy is to share functionalities from the Application layer.
+                Please check the SecurityController in Folder 2.Services in the Solution
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-*">
+            <h2>3.Application</h2>
+            <p>
+                It's the Middleware between UI and Domain.
+                It's responsible for abstract the UI and pass information to the Domain.
+                Also we can mantain the ViewModels and UI validations here to be shared.
+                For example, once defined the ViewModels here they can be easly shared between MVC and WebApi.
+                Also, instead of put all the validation rules in the Controller we give this responsability to the
+                Application Service.
+                So  when we need to figure out which method we have to invoke according with the given parameter
+                we transfer this responsibility to App layer and this method can be shared between UI avoid
+                redunant code and make the maintenance easy.
+                If I need to change the rules, I change only in my App layer, any of the UIs won't be changed.
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-*">
+            <h2>4.Domain</h2>
+            <p>
+                The main layer. It's reponsible to represent the Business.
+                This way we can speak the language of our Client.
+                The Domain must be agnostic to technology (client, web, etc).
+                And must be focus on the business rules and prepared to change and Grow.
+                I expose the funcionalities of my Domain by Domain Services(notice that is not the same as WCF or Web Services).
+                The ideal scenario is Isolate your Domain from other layes using a Midlleware Tier, for example on this Project is DomainDrivenDesign.Application layer.
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-*">
+            <h2>5.Infrastructure</h2>
+            <p>
+                Contains the Data layer which is responsible for bring the data from Datasources using preferable ORM.
+                I didn't implement the ORM layer to keep the solutin small and simple.
+                The CrossCutting layer is prepared to be used across the Project as auxiliary.
+
+            </p>
+        </div>
+    </div>
+</div>

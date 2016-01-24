@@ -1,0 +1,55 @@
+﻿@model IEnumerable<DomainDrivenDesign.Application.ViewModels.SecurityViewModel>
+
+@*class customizedTableHead used just for assessment requirements. Remove it for use the default Bootstrap theme*@
+   <table class="table table-striped table-hover table-responsive customizedTableHead">
+
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SecurityCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SecurityCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SecurityName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sedol)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cusip)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Isin)
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SecurityId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SecurityCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SecurityName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sedol)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cusip)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Isin)
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+

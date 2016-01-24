@@ -1,0 +1,45 @@
+﻿<div class="jumbotron">
+    <h2>Asp.net MVC layer</h2>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-*">
+            <h2>Partial Views</h2>
+            <p>
+                I used the Partial views to update just a piece of the Webpage.
+                Partial views are usally used to Render parts of view and can be shared between views.
+                Example: Html.Partial("SearchResultGridPartial")
+                I used this aproach to avoid writing big If and facilitating code readability and maintenance as well
+                Another good thing is the partial view (grid/table ) should be responsible to display the data and the rules or validations must be inside it.
+                You could easily put the validation out of the view, but this is a bad practice and a error prone approach since you have to repeat the validation every time you need to use this view.
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-*">
+            <h2>AntiForgeryToken</h2>
+            <p>
+                I used the ValidateAntiForgeryToken to avoid cross-site injections.
+                Basically it generates a Token in the View and you decorate your Action with ValidateAntiForgeryToken
+                attribute in order to validate the token.
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-4">
+            <p><img class="img-responsive" src="/Images/Mobile-view-security-search.png" alt="DDD Diagram"></p>
+        </div>
+        <div class="col-lg-8">
+            <h2>Mobile First</h2>
+            <p>
+                I used Bootstrap to ensure that the Website would be responsible for Mobile devices.
+                Also we can hide some elements if we needed. But to make this Project simple I just implemented the width attribute such as:
+                content="width=device-width, initial-scale=1.0"
+                I used the table-responsive in the SearchResultGridPartial to make the table resizable to Mobile.
+            </p>
+        </div>
+    </div>
+</div>

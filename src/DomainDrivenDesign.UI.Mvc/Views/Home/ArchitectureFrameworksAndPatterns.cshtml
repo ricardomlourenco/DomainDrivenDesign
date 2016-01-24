@@ -1,0 +1,174 @@
+﻿<br />
+<div class="jumbotron">
+    <h2>Frameworks and Patterns used</h2>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-*">
+            <h2>IoC - Inversion of Control &amp; DI - Dependency Injection</h2>
+            <p>
+                Every layer is important but the Domain and Ioc tiers are crucial to have a system ready for accepts changes and support the Business
+                The SimpleInjection is used as Ioc Container to do the Dependency Injections.
+                Using this approach we can easly change any implementation of any Interface just changing
+                the references in the Ioc project.
+                Besides, that facilitates the tests and we can Inject Fakes or Mocks to any Layer or Tier
+                and easly perform Unit Tests.
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4">
+            <h2>TDD</h2>
+            <p>
+                The main point here is start with tests and using the AAA concept: Arrange, Assert
+                I developed first the tests and the return must be a fail/red. Then I implement the code
+                and run the tests again, then the tests must be green/passed
+            </p>
+        </div>
+        <div class="col-lg-4">
+            <h2>BDD - Behavior Driven</h2>
+            <p>
+                The BDD relies on the tests should be created based on specifications of the System.
+                You can create Stories for each behavior an so on.
+                I didn't use for this project but I could use Jasmine framkework.
+            </p>
+        </div>
+        <div class="col-lg-4">
+            <h2>Mock</h2>
+            <p>
+                Since I'm using IoC in this project, is easly to Mock almost any layer and I use that to ISOLATE the layer I'm testing.
+                For example I used Mocks for test the Domain layer to inject a ISecurityRepository with few values just to test the logic I need.
+                So if there is problem with the method
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-*">
+            <h2>SOLID</h2>
+            <p>
+                I used strong Object oriented principles which is defined in SOLID specifications.
+                It's a bit work in the beginning but the result, maintenance and readability after is amazing.
+
+                <div class="panel panel-primary">
+                    <div class="panel-heading">SOLID relies on:</div>
+                    <div class="panel-body">
+                        <ul>
+                            <li>Single-responsiblity principle</li>
+                            <li>Open-closed principle</li>
+                            <li>Liskov substitution principle</li>
+                            <li>Interface segregation principle</li>
+                            <li>Dependency Inversion Principle</li>
+                        </ul>
+                    </div>
+                </div>
+
+
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-*">
+            <h2>Single-responsiblity principle</h2>
+            <p>
+                A class should have one and only one reason to change, meaning that a class should have only one job.
+                For example, the class Repository(5.Infrastructure=>5.1.Data=>Repository) is responsible for the data only. It doesn't send email
+                or perform any other respon responsibility than take care of data.
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-*">
+            <h2>Open-closed principle</h2>
+            <p>
+                Objects or entities should be open for extension, but closed for modification.
+                For example, the class Repository(5.Infrastructure=>5.1.Data=>SecurityRepository)
+                extends the Repository class which keeps the principle that the Objects sould be open to extend and close to modification.
+
+                Another example is use of Extension methods.
+                For example instead of alter a Class we can add Extension methods the expand its functionalites.
+                I used that in static class StringExtensionMethods for String class but it can use for our classes
+                as well.
+                This avoid that you change complex classes or objects reducing the change to get a bug.
+
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-*">
+            <h2>Liskov substitution principle</h2>
+            <p>
+                All this is stating is that every subclass/derived class should be substitutable for their base/parent class.
+
+                I used that when I ensured that the class Repository(5.Infrastructure=>5.1.Data=>SecurityRepository) is a Repository
+                and moreover it can act exacly as a Repository class.
+                In other words, both Repository and SecurityRepository are responsible only for provide de Data to the Domain.
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-*">
+            <h2>Interface segregation principle</h2>
+            <p>
+                A client should never be forced to implement an interface that it doesn’t use or clients shouldn’t be forced
+                to depend on methods they do not use
+
+                The class Repository is not using this principle for simplication purposes, but we could easly apply on that.
+                For example, Instead of exists all 3 methods for Insert, update and Delete we could split those actions in separate Interfaces:
+                IInsert, IUpdate, IDelete.
+                And if you need to Delete a Entity in your class you can implement this contract.
+                I used that principle on Citibank where some apps you could Insert and Search, but you couln't delete or update the data for compliance purposes
+                So this way you can avoid uncessary  throw new NotImplementedException(); throughout your classes.
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-*">
+            <h2>Dependency Inversion Principle</h2>
+            <p>
+                Entities must depend on abstractions not on concretions. It states that the high level module must not depend on the low level module, but they should depend on abstractions.
+
+                The Application layer depends on Interfaces in the Domain Layer which means that doesn't matter what is the implementation, we always reference the Interfaces and never the implementation itself.
+                That helps a lot future changes since we need to update only the IoC registers.
+                This way, in the Application layer, we are passing control of funcionalities to the Domain:
+
+                <div class="panel panel-primary">
+                    <div class="panel-heading">SecurityAppService class</div>
+                    <div class="panel-body">
+                        <pre class="prettyprint">
+                            public class SecurityAppService: ISecurityAppService
+                            {
+                                private readonly ISecurityService _securityDomainService;
+                                public SecurityAppService(ISecurityService securityDomainService)
+                                {
+                                    _securityDomainService= securityDomainService;
+                                }
+                                
+                                ///...............................................
+                            }
+                        </pre>
+                    </div>
+                </div>
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-*">
+            <h2>Benefits of SOLID</h2>
+            <p>
+                Code more robust, prepared and ready to receive changes.
+                This is pretty good because we develop Apps and System to change
+                and when one change is needed we can't say: "We have to re-write the hole system!"
+                If the system is prepared to changed, flexible with each layer responsible for specific things the maintenance is much easier.
+                The overall result is more productivity with quality.
+            </p>
+        </div>
+    </div>
+</div>
