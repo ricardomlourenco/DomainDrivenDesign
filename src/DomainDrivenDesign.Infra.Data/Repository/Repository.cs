@@ -1,20 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using DomainDrivenDesign.Domain.Entities;
+using System.Linq;
 using DomainDrivenDesign.Domain.Interfaces.Repository;
 using DomainDrivenDesign.Infra.Data.Context;
-using System.Linq;
 
 namespace DomainDrivenDesign.Infra.Data.Repository
 {
     public class Repository<TEntity>:  IRepository<TEntity> where TEntity : class
     {
-        private DefaultORMContext _dbContext;
-        private DbSet<TEntity> _dbSet;
+        protected DefaultORMContext _dbContext;
+        protected DbSet<TEntity> _dbSet;
 
         public Repository(DefaultORMContext dbContext)
         {
+            if (dbContext == null)
+            {
+                throw new ArgumentException();
+            }
             _dbContext = dbContext;
             _dbSet = _dbContext.Set<TEntity>();
         }
@@ -40,19 +43,23 @@ namespace DomainDrivenDesign.Infra.Data.Repository
             return _dbSet.ToList().Take(10);        
         }
 
-        public TEntity Update(TEntity obj)
+        public TEntity Update(TEntity entity)
         {
-            throw new NotImplementedException();
+            var entry = _dbContext.Entry(entity);
+            _dbSet.Attach(entity);
+            SaveChanges();
+
+            return entity;
         }
 
-        public void Remove(Guid id)
+        public void Delete(Guid id)
         {
-            throw new NotImplementedException();
+            _dbSet.Remove(_dbSet.Find(id));
         }
 
         public virtual IEnumerable<TEntity> Search(Func<TEntity, bool> predicate)
         {
-            throw new NotImplementedException();
+            return _dbSet.Where(predicate);
         }
 
         public int SaveChanges()

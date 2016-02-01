@@ -28,21 +28,14 @@ namespace DomainDrivenDesign.UI.Mvc.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Search(SecuritySearch model)
         {
-            model.Securities = _securityAppService.Search(model);
+            model.Securities = _securityAppService.SearchByModel(model);
             return View(model);
         }
 
         [ValidateAntiForgeryToken]
         public PartialViewResult SearchResultPartial(SecuritySearch model)
-        {
-
-            /// Slowing the method in Debug mode to be able to see the "Loading" feature 
-#if DEBUG
-            //System.Threading.Thread.Sleep(1000);
-            //throw new ArgumentException();
-#endif
-            
-            return PartialView(_securityAppService.Search(model));
+        {            
+            return PartialView(_securityAppService.SearchByModel(model));
         }
 
         public ActionResult SearchjQuery()
@@ -50,6 +43,24 @@ namespace DomainDrivenDesign.UI.Mvc.Controllers
             var securities = _securityAppService.GetAll();
             var model = new SecuritySearch() { Securities = securities };
             return View(model);
+        }
+
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(SecurityViewModel securityViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                _securityAppService.Add(securityViewModel);
+                return RedirectToAction("Search");  
+            }
+
+            return View();
         }
 	}
 }

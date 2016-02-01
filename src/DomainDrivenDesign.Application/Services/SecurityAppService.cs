@@ -31,11 +31,11 @@ namespace DomainDrivenDesign.Application.Services
         /// The Search filters and complexity to perform a Search are isolates in the Application tier
         /// which simplifies the code, improve quality, testability and scalability
         /// We can easly use this layer to invoke searches from any UI such as Asp.Net Mvc, Mobile, WebApi, etc. 
-        /// because all filters and complexity are concentred here and it's not needed ctrl + C, V, just reuse the code
+        /// once all filters and complexity are located here and it's not needed ctrl + C, V, just reuse the code
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public IEnumerable<SecurityViewModel> Search(SecuritySearch model)
+        public IEnumerable<SecurityViewModel> SearchByModel(SecuritySearch model)
         {
             IEnumerable<Security> securitiesDomain = null;
 
@@ -57,5 +57,32 @@ namespace DomainDrivenDesign.Application.Services
             var result = _securityDomainService.Search(security => security.SecurityCode.Trim().StartsWith(code, StringComparison.CurrentCultureIgnoreCase));
             return Mapper.Map<IEnumerable<Security>, IEnumerable<SecurityViewModel>>(result);
         }
+
+        public SecurityViewModel Add(SecurityViewModel entity)
+        {
+            var domainEntity = Mapper.Map<SecurityViewModel, Security>(entity);
+            return Mapper.Map<Security, SecurityViewModel>(_securityDomainService.Add(domainEntity));
+        }
+
+        public SecurityViewModel GetById(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public SecurityViewModel Update(SecurityViewModel entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Delete(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<SecurityViewModel> Search(Func<SecurityViewModel, bool> predicate)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }

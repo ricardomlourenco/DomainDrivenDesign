@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using DomainDrivenDesign.Application.ViewModels;
 
 namespace DomainDrivenDesign.Application.Interfaces
 {
-    public interface ISecurityAppService: IDisposable
+    public interface ISecurityAppService : IAppServiceBase<SecurityViewModel>
     {
-        IEnumerable<SecurityViewModel> GetAll();
-        IEnumerable<SecurityViewModel> Search(SecuritySearch model);
         IEnumerable<SecurityViewModel> SearchByCode(string model); 
+        IEnumerable<SecurityViewModel> SearchByModel(SecuritySearch model); 
     }
 }

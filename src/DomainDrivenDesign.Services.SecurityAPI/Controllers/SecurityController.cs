@@ -7,7 +7,7 @@ namespace DomainDrivenDesign.Services.SecurityAPI.Controllers
 {
     public class SecurityController : ApiController
     {
-        private ISecurityAppService _securityAppService;
+        private readonly ISecurityAppService _securityAppService;
 
         public SecurityController(ISecurityAppService securityAppService)
         {

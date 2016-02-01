@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq.Expressions;
 using DomainDrivenDesign.Domain.Entities;
 using DomainDrivenDesign.Domain.Interfaces.Repository;
 using DomainDrivenDesign.Domain.Interfaces.Services;
@@ -34,6 +33,26 @@ namespace DomainDrivenDesign.Domain.Services
         public IEnumerable<Security> SearchByAnyText(string text)
         {
             return _securityRepository.SearchByAnyText(text);
+        }
+
+        public Security Add(Security entity)
+        {
+            return _securityRepository.Add(entity);
+        }
+
+        public Security GetById(Guid id)
+        {
+            return _securityRepository.GetById(id);
+        }
+
+        public Security Update(Security entity)
+        {
+            return _securityRepository.Update(entity);
+        }
+
+        public void Delete(Guid id)
+        {
+            _securityRepository.Delete(id);
         }
     }
 }

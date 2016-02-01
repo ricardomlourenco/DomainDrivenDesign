@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DomainDrivenDesign.Domain.Interfaces.Repository
+namespace DomainDrivenDesign.Application.Interfaces
 {
-    public interface IRepository<TEntity>: IDisposable where TEntity : class
+    public interface IAppServiceBase<TEntity>: IDisposable where TEntity: class
     {
         TEntity Add(TEntity entity);
         TEntity GetById(Guid id);
