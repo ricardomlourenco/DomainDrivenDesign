@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using DomainDrivenDesign.Application.Interfaces;
 using DomainDrivenDesign.Application.ViewModels;
 
@@ -17,6 +18,8 @@ namespace DomainDrivenDesign.UI.Mvc.Controllers
             return RedirectToAction("Search");
         }
 
+        #region Search
+
         public ActionResult Search()
         {
             var securities = _securityAppService.GetAll();
@@ -34,7 +37,7 @@ namespace DomainDrivenDesign.UI.Mvc.Controllers
 
         [ValidateAntiForgeryToken]
         public PartialViewResult SearchResultPartial(SecuritySearch model)
-        {            
+        {
             return PartialView(_securityAppService.SearchByModel(model));
         }
 
@@ -44,6 +47,10 @@ namespace DomainDrivenDesign.UI.Mvc.Controllers
             var model = new SecuritySearch() { Securities = securities };
             return View(model);
         }
+
+        #endregion
+
+        #region Create
 
         public ActionResult Create()
         {
@@ -57,10 +64,37 @@ namespace DomainDrivenDesign.UI.Mvc.Controllers
             if (ModelState.IsValid)
             {
                 _securityAppService.Add(securityViewModel);
-                return RedirectToAction("Search");  
+                return RedirectToAction("Search");
             }
 
             return View();
         }
-	}
+
+        #endregion  
+
+        #region Edit
+
+        public ActionResult Edit(SecurityViewModel securityViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                _securityAppService.Update(securityViewModel); 
+            }
+
+            return RedirectToAction("Search");
+        }
+
+
+        #endregion
+
+        #region Delete
+
+        public ActionResult Delete(int id)
+        {
+            _securityAppService.Delete(id);
+            return RedirectToAction("Search");
+        }
+
+        #endregion
+    }
 }

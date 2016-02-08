@@ -21,6 +21,7 @@
         <th>
             @Html.DisplayNameFor(model => model.Isin)
         </th>
+        <th/>
 
     </tr>
 
@@ -45,6 +46,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Isin)
             </td>
+            <td>@Html.ActionLink("Delete", "Delete", new { id = item.SecurityId })</td>
         </tr>
     }
 

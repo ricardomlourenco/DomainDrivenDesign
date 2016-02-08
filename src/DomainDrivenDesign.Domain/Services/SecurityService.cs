@@ -15,12 +15,12 @@ namespace DomainDrivenDesign.Domain.Services
             _securityRepository = securityRepository;
         }
 
-        public IEnumerable<Entities.Security> GetAll()
+        public IEnumerable<Security> GetAll()
         {
             return _securityRepository.GetAll();
         }
 
-        public IEnumerable<Entities.Security> Search(Func<Entities.Security, bool> predicate)
+        public IEnumerable<Security> Search(Func<Security, bool> predicate)
         {
             return _securityRepository.Search(predicate);
         }
@@ -40,7 +40,7 @@ namespace DomainDrivenDesign.Domain.Services
             return _securityRepository.Add(entity);
         }
 
-        public Security GetById(Guid id)
+        public Security GetById(int id)
         {
             return _securityRepository.GetById(id);
         }
@@ -50,7 +50,7 @@ namespace DomainDrivenDesign.Domain.Services
             return _securityRepository.Update(entity);
         }
 
-        public void Delete(Guid id)
+        public void Delete(int id)
         {
             _securityRepository.Delete(id);
         }

@@ -223,6 +223,7 @@
     <Content Include="Views\Home\ArchitectureMVC.cshtml" />
     <Content Include="Views\Home\ArchitectureFrameworksAndPatterns.cshtml" />
     <Content Include="Views\Security\Create.cshtml" />
+    <Content Include="Views\Security\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

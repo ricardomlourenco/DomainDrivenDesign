@@ -29,7 +29,7 @@ namespace DomainDrivenDesign.Infra.Data.Repository
             return result;
         }
 
-        public TEntity GetById(Guid id)
+        public TEntity GetById(int id)
         {
             return _dbSet.Find(id);
         }
@@ -52,9 +52,10 @@ namespace DomainDrivenDesign.Infra.Data.Repository
             return entity;
         }
 
-        public void Delete(Guid id)
+        public void Delete(int id)
         {
             _dbSet.Remove(_dbSet.Find(id));
+            SaveChanges();
         }
 
         public virtual IEnumerable<TEntity> Search(Func<TEntity, bool> predicate)

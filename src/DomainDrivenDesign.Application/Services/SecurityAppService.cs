@@ -64,25 +64,25 @@ namespace DomainDrivenDesign.Application.Services
             return Mapper.Map<Security, SecurityViewModel>(_securityDomainService.Add(domainEntity));
         }
 
-        public SecurityViewModel GetById(Guid id)
+        public SecurityViewModel GetById(int id)
         {
-            throw new NotImplementedException();
+            return Mapper.Map<Security, SecurityViewModel>(_securityDomainService.GetById(id));
         }
 
         public SecurityViewModel Update(SecurityViewModel entity)
         {
-            throw new NotImplementedException();
+            var result = _securityDomainService.Update(Mapper.Map<SecurityViewModel, Security>(entity));
+            return Mapper.Map<Security, SecurityViewModel>(result);
         }
 
-        public void Delete(Guid id)
+        public void Delete(int id)
         {
-            throw new NotImplementedException();
+            _securityDomainService.Delete(id);
         }
 
         public IEnumerable<SecurityViewModel> Search(Func<SecurityViewModel, bool> predicate)
         {
             throw new NotImplementedException();
         }
-
     }
 }
